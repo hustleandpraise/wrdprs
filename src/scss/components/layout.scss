@@ -1,0 +1,44 @@
+html {
+    box-sizing: border-box;
+}
+*,
+*:before,
+*:after {
+    box-sizing: inherit;
+}
+
+/*
+|--------------------------------------------------
+| Container
+|--------------------------------------------------
+*/
+
+.container {
+    padding: 15px 0;
+}
+
+@media (min-width: 1px) {
+    .container {
+        margin: 0 20px;
+    }
+}
+@media (min-width: 768px) {
+    .container {
+        margin: 0 30px;
+    }
+}
+@media (min-width: 980px) {
+    .container {
+        margin: 0 auto;
+        width: 960px;
+    }
+}
+@media (min-width: 1200px) {
+    .container {
+        &.with-padding {
+            padding: 50px 0;
+        }
+        margin: 0 auto;
+        width: 1170px;
+    }
+}
