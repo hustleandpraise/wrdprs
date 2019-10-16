@@ -12,37 +12,7 @@ const config = {
         path: path.join(__dirname, "assets/dist/js")
     },
     resolve: {
-        modules: [path.resolve("./src"), path.resolve("./node_modules")],
-        alias: {
-            TweenLite: path.resolve(
-                "node_modules",
-                "gsap/src/minified/TweenLite.min.js"
-            ),
-            TweenMax: path.resolve(
-                "node_modules",
-                "gsap/src/minified/TweenMax.min.js"
-            ),
-            TimelineLite: path.resolve(
-                "node_modules",
-                "gsap/src/minified/TimelineLite.min.js"
-            ),
-            TimelineMax: path.resolve(
-                "node_modules",
-                "gsap/src/minified/TimelineMax.min.js"
-            ),
-            ScrollMagic: path.resolve(
-                "node_modules",
-                "scrollmagic/scrollmagic/minified/ScrollMagic.min.js"
-            ),
-            "animation.gsap": path.resolve(
-                "node_modules",
-                "scrollmagic/scrollmagic/minified/plugins/animation.gsap.min.js"
-            ),
-            "debug.addIndicators": path.resolve(
-                "node_modules",
-                "scrollmagic/scrollmagic/minified/plugins/debug.addIndicators.min.js"
-            )
-        }
+        modules: [path.resolve("./src"), path.resolve("./node_modules")]
     },
     module: {
         rules: [
@@ -80,12 +50,12 @@ const config = {
                 from: "./src/fonts",
                 to: "../fonts"
             }
-        ]),
-        new ImageminPlugin({
-            pngquant: {
-                quality: "95-100"
-            }
-        })
+        ])
+        // new ImageminPlugin({
+        //     pngquant: {
+        //         quality: "95-100"
+        //     }
+        // })
     ],
     optimization: {
         minimizer: [

@@ -1,0 +1,41 @@
+version: "3.4"
+services:
+    db:
+        image: mysql:5.7
+        restart: always
+        environment:
+            MYSQL_DATABASE: site_development
+            MYSQL_USER: mysql
+            MYSQL_PASSWORD: testpassword
+            MYSQL_RANDOM_ROOT_PASSWORD: "1"
+        volumes:
+            - db-data:/var/lib/mysql
+
+    adminer:
+        image: adminer
+        restart: always
+        ports:
+            - 8080:8080
+
+    smtp:
+        image: mailhog/mailhog
+        ports:
+            - "8025:8025"
+            - "1025:1025"
+
+    wordpress:
+        image: wordpress
+        ports:
+            - 3000:80
+        environment:
+            WORDPRESS_DB_HOST: db
+            WORDPRESS_DB_USER: mysql
+            WORDPRESS_DB_PASSWORD: testpassword
+            WORDPRESS_DB_NAME: adamscloud_development
+            WORDPRESS_TABLE_PREFIX: wp_pyfg3fdny4_
+        volumes:
+            - ./:/var/www/html/wp-content/themes/adamscloud
+            - ./wp-content/uploads:/var/www/html/wp-content/uploads
+            - ./wp-content/plugins:/var/www/html/wp-content/plugins
+
+volumes: db-data:

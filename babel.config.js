@@ -7,7 +7,8 @@ const presets = [
                 chrome: "58",
                 ie: "10"
             },
-            useBuiltIns: "usage"
+            useBuiltIns: "usage",
+            corejs: 3
         }
     ]
 ];
