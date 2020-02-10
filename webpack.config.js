@@ -3,7 +3,6 @@ const UglifyJsPlugin = require("uglifyjs-webpack-plugin");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const OptimizeCSSAssetsPlugin = require("optimize-css-assets-webpack-plugin");
 const CopyWebpackPlugin = require("copy-webpack-plugin");
-const ImageminPlugin = require("imagemin-webpack-plugin").default;
 
 const config = {
     entry: "./src/js/main.js",
@@ -51,11 +50,6 @@ const config = {
                 to: "../fonts"
             }
         ])
-        // new ImageminPlugin({
-        //     pngquant: {
-        //         quality: "95-100"
-        //     }
-        // })
     ],
     optimization: {
         minimizer: [

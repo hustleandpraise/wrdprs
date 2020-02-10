@@ -24,8 +24,8 @@ function setup() {
     */
     register_nav_menus(array(
         'primary_navigation' => "Primary Navigation",
-        'footer' => "Footer Navigation",
-        'mobile' => "Mobile Navigation"
+        'footer_navigation' => "Footer Navigation",
+        'mobile_navigation' => "Mobile Navigation"
     ));
 
     /*
