@@ -1,70 +1,53 @@
 const path = require("path");
-const UglifyJsPlugin = require("uglifyjs-webpack-plugin");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
-const OptimizeCSSAssetsPlugin = require("optimize-css-assets-webpack-plugin");
-const CopyWebpackPlugin = require("copy-webpack-plugin");
 
 const config = {
     entry: "./src/js/main.js",
     output: {
         filename: "[name].min.js",
-        path: path.join(__dirname, "assets/dist/js")
+        path: path.join(__dirname, "assets/dist/js"),
     },
     resolve: {
-        modules: [path.resolve("./src"), path.resolve("./node_modules")]
+        modules: [path.resolve("./src/js"), path.resolve("./node_modules")],
+        extensions: [".tsx", ".ts", ".js"],
     },
     module: {
         rules: [
             {
-                test: /\.js$/,
+                test: /\.(ts|js)x?$/,
                 exclude: /node_modules/,
-                use: ["babel-loader"]
+                use: ["babel-loader"],
             },
             {
                 test: /\.scss$/,
                 use: [
                     MiniCssExtractPlugin.loader,
-                    {
-                        loader: "css-loader",
-                        options: {
-                            url: false
-                        }
-                    },
+                    "css-loader",
                     "postcss-loader",
-                    "sass-loader"
-                ]
-            }
-        ]
-    },
-    plugins: [
-        new MiniCssExtractPlugin({
-            filename: "../css/main.css"
-        }),
-        new CopyWebpackPlugin([
-            {
-                from: "./src/img",
-                to: "../img"
+                    "sass-loader",
+                ],
             },
             {
-                from: "./src/fonts",
-                to: "../fonts"
-            }
-        ])
-    ],
-    optimization: {
-        minimizer: [
-            new UglifyJsPlugin({
-                cache: true,
-                parallel: true,
-                sourceMap: true
-            }),
-            new OptimizeCSSAssetsPlugin()
+                test: /\.(woff(2)?|ttf|eot|svg)(\?v=\d+\.\d+\.\d+)?$/,
+                use: [
+                    {
+                        loader: "file-loader",
+                        options: {
+                            name: "[name].[ext]",
+                            outputPath: "../fonts/",
+                        },
+                    },
+                ],
+            },
         ],
-        splitChunks: {
-            chunks: "all",
-            name: "vendor"
-        }
-    }
+    },
+
+    plugins: [
+        new MiniCssExtractPlugin({
+            filename: "../css/[name].css",
+            chunkFilename: "../css/[id].css",
+        }),
+    ],
 };
 
 module.exports = config;

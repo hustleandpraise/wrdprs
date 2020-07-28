@@ -4,7 +4,7 @@ services:
         image: mysql:5.7
         restart: always
         environment:
-            MYSQL_DATABASE: site_development
+            MYSQL_DATABASE: handp_theme_development
             MYSQL_USER: mysql
             MYSQL_PASSWORD: testpassword
             MYSQL_RANDOM_ROOT_PASSWORD: "1"
@@ -31,10 +31,10 @@ services:
             WORDPRESS_DB_HOST: db
             WORDPRESS_DB_USER: mysql
             WORDPRESS_DB_PASSWORD: testpassword
-            WORDPRESS_DB_NAME: adamscloud_development
+            WORDPRESS_DB_NAME: handp_theme_development
             WORDPRESS_TABLE_PREFIX: wp_pyfg3fdny4_
         volumes:
-            - ./:/var/www/html/wp-content/themes/adamscloud
+            - ./:/var/www/html/wp-content/themes/handp_theme
             - ./wp-content/uploads:/var/www/html/wp-content/uploads
             - ./wp-content/plugins:/var/www/html/wp-content/plugins
 

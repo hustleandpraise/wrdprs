@@ -4,17 +4,9 @@
 |--------------------------------------------------------------------------
 */
 
-@import "tailwindcss/base";
-@import "tailwindcss/components";
-@import "tailwindcss/utilities";
-
-@import "node_modules/@wurren/bascss/bascss";
-@import "components/fonts";
-
-// Grid used with basecss
-$grid-columns: 12;
-$grid-column-padding: 15px;
-$grid-float-breakpoint: 768px;
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
 
 /*
 |--------------------------------------------------------------------------
@@ -30,6 +22,7 @@ $grid-float-breakpoint: 768px;
 |--------------------------------------------------------------------------
 */
 
+@import "components/fonts";
 @import "components/layout.scss";
 @import "components/type.scss";
 @import "components/header.scss";

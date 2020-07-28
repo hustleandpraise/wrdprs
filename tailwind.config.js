@@ -1,7 +1,13 @@
 module.exports = {
-  theme: {
-    extend: {},
-  },
-  variants: {},
-  plugins: [],
-}
+    purge: [
+        "./partials/*.php",
+        "./*.php",
+        "./templates/*.php",
+        "./src/js/**/*.js",
+    ],
+    theme: {
+        extend: {},
+    },
+    variants: {},
+    plugins: [],
+};
