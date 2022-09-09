@@ -4,9 +4,9 @@
 |--------------------------------------------------------------------------
 */
 
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import "tailwindcss/base";
+@import "tailwindcss/components";
+@import "tailwindcss/utilities";
 
 /*
 |--------------------------------------------------------------------------
@@ -14,7 +14,7 @@
 |--------------------------------------------------------------------------
 */
 
-@import "libs/plugins.scss";
+@import "libs/plugins.css";
 
 /*
 |--------------------------------------------------------------------------
@@ -23,19 +23,15 @@
 */
 
 @import "components/fonts";
-@import "components/layout.scss";
-@import "components/type.scss";
-@import "components/header.scss";
-@import "components/footer.scss";
-@import "components/buttons.scss";
-@import "components/forms.scss";
+@import "components/layout.css";
+@import "components/type.css";
+@import "components/header.css";
+@import "components/footer.css";
+@import "components/buttons.css";
+@import "components/forms.css";
 
 /*
 |--------------------------------------------------------------------------
 | App
 |--------------------------------------------------------------------------
 */
-
-@import "pages/homepage.scss";
-@import "pages/page.scss";
-@import "pages/post.scss";

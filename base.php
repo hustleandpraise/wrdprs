@@ -3,32 +3,31 @@ use Hustle\Setup;
 use Hustle\Wrapper;
 ?>
 <!doctype html>
-<!--[if lt IE 7]> <html class="no-js lt-ie9 lt-ie8 lt-ie7 oldie" lang="en"> <![endif]-->
-<!--[if IE 7]>    <html class="no-js lt-ie9 lt-ie8 oldie" lang="en"> <![endif]-->
-<!--[if IE 8]>    <html class="no-js lt-ie9 oldie" lang="en"> <![endif]-->
-<!--[if gt IE 8]><!--> <html class="no-js" <?php language_attributes(); ?>> <!--<![endif]-->
-<?= partial("head"); ?>
-<body <?php body_class(); ?>>   
+<html class="no-js" <?php language_attributes(); ?>>
+    <?= partial("head"); ?>
 
-    <?= partial("header"); ?>
-    
-    <?php /*
-        Below renders any template page into that space.
-        - index
-        - page
-        - single
-        - search
-        - template/homepage
-        - etc
-    */ ?>
+    <body <?php body_class(); ?>>
+        <main class="min-h-screen flex flex-col">
+            <?= partial("_header"); ?>
 
-    <?php include Wrapper\template_path(); ?>
+            <?php /*
+                Below renders any template page into that space.
+                - index
+                - page
+                - single
+                - search
+                - template/homepage
+                - etc
+            */ ?>
+            <div class="flex-1">
+                <?php include Wrapper\template_path(); ?>
+            </div>
 
-    <?= partial("footer"); ?>
+            <?= partial("_footer"); ?>
+        </main>
 
-    <?php wp_footer(); ?>
-    <script src="<?= js_url("vendor.min.js"); ?>"></script>
-    <script src="<?= js_url("main.min.js"); ?>"></script>
-    
-</body>
+        <?php wp_footer(); ?>
+        <script src="<?= js_url("main.min.js"); ?>"></script>
+    </body>
+
 </html>

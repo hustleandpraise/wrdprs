@@ -1,3 +1,3 @@
 <?php while (have_posts()) : the_post(); ?>
-<?= partial('page'); ?>
+<?= partial("_basic_content"); ?>
 <?php endwhile; ?>

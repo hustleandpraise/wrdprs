@@ -47,46 +47,77 @@ function asset_url($file_name) {
 |--------------------------------------------------
 */
 
-function partial($name) {
-    return get_template_part('partials/'.$name);
+function partial($name, $data = []) {
+    return get_template_part('partials/'.$name, null, $data);
 }
 
 /*
 |--------------------------------------------------
-| Partial with Collection
-| This takes a result of WP_Query, and renders a partial for each post
-| $collection = result of WP_Query
-| $partial = partial file to be rendered for each post
+| Worpress Menu to Array
 |--------------------------------------------------
 */
 
-function render_collection($collection, $partial) {
-    while ($collection->have_posts()) : $collection->the_post(); 
-        echo get_template_part('partials/'.$partial);
-    endwhile; 
-}
+function wp_get_menu_array($name) {
 
-/*
-|--------------------------------------------------
-| Partial with Collection Rows
-| Same as above, but will break the result into rows of $count
-| $count = posts per row
-| $collection = result of WP_Query
-| $partial = partial file to be rendered for each post
-| $row_class = css classname for each row generated
-|--------------------------------------------------
-*/
+    $current_menu = wp_get_nav_menu_object(get_nav_menu_locations()[$name]);
 
-function render_collection_rows($count, $collection, $partial, $row_class = "row") {
-    $rows = array_chunk($collection->get_posts(), $count);
-    foreach($rows as $row) {
-        echo '<div class="'.$row_class.'">';
-        foreach($row as $post) {
-            $collection->the_post(); 
-            echo get_template_part('partials/'.$partial);
+    $array_menu = wp_get_nav_menu_items($current_menu);
+    $menu = array();
+    foreach ($array_menu as $m) {
+        if (empty($m->menu_item_parent)) {
+            $menu[$m->ID] = array();
+            $menu[$m->ID]['ID'] = $m->ID;
+            $menu[$m->ID]['title'] = $m->title;
+            $menu[$m->ID]['url'] = $m->url;
+            $menu[$m->ID]['description'] = $m->description;
+            $menu[$m->ID]['icon_name'] = get_field('icon_name', $m->ID);
+            $menu[$m->ID]['children'] = array();
         }
-        echo '</div>';
     }
+    $submenu = array();
+    foreach ($array_menu as $m) {
+        if ($m->menu_item_parent) {
+            $submenu[$m->ID] = array();
+            $submenu[$m->ID]['ID'] = $m->ID;
+            $submenu[$m->ID]['title'] = $m->title;
+            $submenu[$m->ID]['url'] = $m->url;
+            $submenu[$m->ID]['description'] = $m->description;
+            $submenu[$m->ID]['icon_name'] = get_field('icon_name', $m->ID);
+            $menu[$m->menu_item_parent]['children'][$m->ID] = $submenu[$m->ID];
+        }
+    }
+    return $menu;
+}
+
+/*
+|--------------------------------------------------
+|  Move Yoast to bottom
+|--------------------------------------------------
+*/
+
+function yoasttobottom() {
+	return 'low';
+}
+add_filter( 'wpseo_metabox_prio', 'yoasttobottom');
+
+
+/*
+|--------------------------------------------------
+| Responsive Image Src & Image Element
+|--------------------------------------------------
+*/
+
+function get_responsive_img($id) {
+    return [
+        'src'       => wp_get_attachment_image_url($id, 'full'),
+        'srcset'    => wp_get_attachment_image_srcset($id, 'full'),
+        'sizes'     => 'auto'
+    ];
+}
+
+function responsive_img($id, $class = "", $alt = "") {
+    $sizes = get_responsive_img($id);
+    return "<img data-src=\"{$sizes['src']}\" data-srcset=\"{$sizes['srcset']}\" data-sizes=\"{$sizes['sizes']}\" lazyload class=\"lazyload {$class}\" alt=\"{$alt}\" />";
 }
 
 /*
@@ -103,4 +134,25 @@ if( function_exists('acf_add_options_page') ) {
 		'capability'	=> 'edit_posts',
 		'redirect'		=> false
 	));
+}
+
+/*
+|--------------------------------------------------
+| Truncate text
+|--------------------------------------------------
+*/
+
+function truncate($string,$length=100,$append="&hellip;") {
+
+    $string = strip_tags($string);
+
+    $string = trim($string);
+  
+    if(strlen($string) > $length) {
+      $string = wordwrap($string, $length);
+      $string = explode("\n", $string, 2);
+      $string = $string[0] . $append;
+    }
+  
+    return $string;
 }

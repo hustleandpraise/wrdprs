@@ -1,13 +1,15 @@
+/** @type {import('tailwindcss').Config} */
+
 module.exports = {
-    purge: [
-        "./partials/*.php",
+    content: [
+        "./partials/**/*.php",
         "./*.php",
-        "./templates/*.php",
-        "./src/js/**/*.js",
+        "./templates/**/*.php",
+        "./src/js/**/*.ts",
+        "./safelist.txt",
     ],
     theme: {
         extend: {},
     },
-    variants: {},
-    plugins: [],
+    plugins: [require("@tailwindcss/typography")],
 };

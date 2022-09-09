@@ -1,5 +1,7 @@
 <?php
 
+require __DIR__ . '/vendor/autoload.php';
+
 $setup_includes = [
     'lib/setup.php',        // Theme setup
     'lib/titles.php',       // Page titles

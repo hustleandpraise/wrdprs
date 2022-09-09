@@ -11,7 +11,7 @@ function setup() {
 
     /*
     |--------------------------------------------------
-    | TItle Tag Support
+    | Title Tag Support
     |--------------------------------------------------
     */
     
@@ -23,7 +23,7 @@ function setup() {
     |--------------------------------------------------
     */
     register_nav_menus(array(
-        'primary_navigation' => "Primary Navigation",
+        'main_navigation' => "Main Navigation",
         'footer_navigation' => "Footer Navigation",
         'mobile_navigation' => "Mobile Navigation"
     ));
