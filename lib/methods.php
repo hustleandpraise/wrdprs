@@ -59,7 +59,15 @@ function partial($name, $data = []) {
 
 function wp_get_menu_array($name) {
 
-    $current_menu = wp_get_nav_menu_object(get_nav_menu_locations()[$name]);
+    $allnavs = get_nav_menu_locations();
+
+    if(!isset($allnavs[$name])) return false;
+
+    $nav = $allnavs[$name];
+
+    if(!$nav) return false;
+    
+    $current_menu = wp_get_nav_menu_object($nav);
 
     $array_menu = wp_get_nav_menu_items($current_menu);
     $menu = array();

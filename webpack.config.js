@@ -1,11 +1,16 @@
 const path = require("path");
 const CopyPlugin = require("copy-webpack-plugin");
+const { WebpackManifestPlugin } = require("webpack-manifest-plugin");
+const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 
 const config = {
-    entry: "./src/js/main.ts",
+    entry: {
+        main: "./src/ts/main.ts",
+    },
     output: {
-        filename: "[name].min.js",
-        path: path.join(__dirname, "assets/dist/js"),
+        filename: "[name].[chunkhash].js",
+        path: path.join(__dirname, "assets/dist"),
+        clean: true,
     },
     target: ["web", "es5"],
     resolve: {
@@ -19,15 +24,38 @@ const config = {
                 exclude: /node_modules/,
                 use: ["swc-loader"],
             },
+            {
+                test: /\.css$/i,
+                exclude: /node_modules/,
+                use: [
+                    MiniCssExtractPlugin.loader,
+                    "css-loader",
+                    "postcss-loader",
+                ],
+            },
         ],
     },
 
     plugins: [
         new CopyPlugin({
             patterns: [
-                { from: "./src/img", to: "../img" },
-                { from: "./src/fonts", to: "../fonts" },
+                { from: "./src/img", to: "./img" },
+                { from: "./src/fonts", to: "./fonts" },
             ],
+        }),
+        new WebpackManifestPlugin({
+            removeKeyHash: true,
+            writeToFileEmit: true,
+            basePath: "",
+            publicPath: "/assets/dist/",
+            filename: "manifest.json",
+            filter: (file) => {
+                if (file.name.includes("gitkeep")) return false;
+                return true;
+            },
+        }),
+        new MiniCssExtractPlugin({
+            filename: "[name].[chunkhash].css",
         }),
     ],
 };

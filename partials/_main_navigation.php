@@ -1,6 +1,6 @@
 <?php $nav = wp_get_menu_array('main_navigation'); ?>
 
-
+<?php if($nav): ?>
 <ul>
     <?php foreach($nav as $link): ?>
     <li>
@@ -13,3 +13,4 @@
     </li>
     <?php endforeach; ?>
 </ul>
+<?php endif; ?>

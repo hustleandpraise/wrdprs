@@ -1,5 +1,5 @@
 {
     "require-dev": {
-        "paulthewalton/acf-stubs": "*"
+        "php-stubs/acf-pro-stubs": "^6.0"
     }
 }

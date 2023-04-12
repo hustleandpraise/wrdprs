@@ -1,57 +1,103 @@
 {
     "packages": [
         {
-            "name": "paulthewalton/acf-stubs",
-            "version": "5.8.7",
-            "version_normalized": "5.8.7.0",
+            "name": "php-stubs/acf-pro-stubs",
+            "version": "v6.0.6",
+            "version_normalized": "6.0.6.0",
             "source": {
                 "type": "git",
-                "url": "https://github.com/paulthewalton/acf-stubs.git",
-                "reference": "722096c127186c41ac98395b418195d1db9cf576"
+                "url": "https://github.com/php-stubs/acf-pro-stubs.git",
+                "reference": "3301f61c975ee6078fc89c1f6ba70358349ea137"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/paulthewalton/acf-stubs/zipball/722096c127186c41ac98395b418195d1db9cf576",
-                "reference": "722096c127186c41ac98395b418195d1db9cf576",
+                "url": "https://api.github.com/repos/php-stubs/acf-pro-stubs/zipball/3301f61c975ee6078fc89c1f6ba70358349ea137",
+                "reference": "3301f61c975ee6078fc89c1f6ba70358349ea137",
                 "shasum": ""
             },
-            "require-dev": {
-                "ext-gettext": "*",
-                "giacocorsiglia/stubs-generator": "^0.5.0",
-                "giacocorsiglia/wordpress-stubs": "*",
-                "php": "^7.1",
-                "wpackagist-plugin/advanced-custom-fields": "5.8.7"
+            "require": {
+                "php-stubs/wordpress-stubs": "^4.7 || ^5.0 || ^6.0"
             },
-            "time": "2019-12-04T19:26:53+00:00",
+            "require-dev": {
+                "php": "~7.1",
+                "php-stubs/generator": "^0.8"
+            },
+            "suggest": {
+                "symfony/polyfill-php73": "Symfony polyfill backporting some PHP 7.3+ features to lower PHP versions",
+                "szepeviktor/phpstan-wordpress": "WordPress extensions for PHPStan"
+            },
+            "time": "2022-12-25T22:14:41+00:00",
             "type": "library",
             "installation-source": "dist",
             "notification-url": "https://packagist.org/downloads/",
             "license": [
-                "GPL-2.0+"
+                "GPL-2.0-or-later"
             ],
-            "authors": [
-                {
-                    "name": "Paul Walton",
-                    "email": "pwalton@live.ca",
-                    "role": "copycat"
-                }
-            ],
-            "description": "Based on giacocorsiglia/wordpress-stubs. Advanced Custom Fields function, class, and global variable declaration stubs for easier static analysis.",
+            "description": "Advanced Custom Fields PRO stubs for static analysis.",
+            "homepage": "https://github.com/php-stubs/acf-pro-stubs",
             "keywords": [
+                "PHPStan",
                 "acf",
-                "advanced custom fields",
                 "static analysis",
                 "wordpress"
             ],
             "support": {
-                "issues": "https://github.com/paulthewalton/acf-stubs/issues",
-                "source": "https://github.com/paulthewalton/acf-stubs/tree/5.8.7"
+                "issues": "https://github.com/php-stubs/acf-pro-stubs/issues",
+                "source": "https://github.com/php-stubs/acf-pro-stubs/tree/v6.0.6"
             },
-            "install-path": "../paulthewalton/acf-stubs"
+            "install-path": "../php-stubs/acf-pro-stubs"
+        },
+        {
+            "name": "php-stubs/wordpress-stubs",
+            "version": "v6.2.0",
+            "version_normalized": "6.2.0.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/php-stubs/wordpress-stubs.git",
+                "reference": "b73fe99eadf9fb56363619dac0343b6d19907dce"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/php-stubs/wordpress-stubs/zipball/b73fe99eadf9fb56363619dac0343b6d19907dce",
+                "reference": "b73fe99eadf9fb56363619dac0343b6d19907dce",
+                "shasum": ""
+            },
+            "require-dev": {
+                "nikic/php-parser": "< 4.12.0",
+                "php": "~7.3 || ~8.0",
+                "php-stubs/generator": "^0.8.3",
+                "phpdocumentor/reflection-docblock": "^5.3",
+                "phpstan/phpstan": "^1.9"
+            },
+            "suggest": {
+                "paragonie/sodium_compat": "Pure PHP implementation of libsodium",
+                "symfony/polyfill-php73": "Symfony polyfill backporting some PHP 7.3+ features to lower PHP versions",
+                "szepeviktor/phpstan-wordpress": "WordPress extensions for PHPStan"
+            },
+            "time": "2023-03-31T09:48:52+00:00",
+            "type": "library",
+            "installation-source": "dist",
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "description": "WordPress function and class declaration stubs for static analysis.",
+            "homepage": "https://github.com/php-stubs/wordpress-stubs",
+            "keywords": [
+                "PHPStan",
+                "static analysis",
+                "wordpress"
+            ],
+            "support": {
+                "issues": "https://github.com/php-stubs/wordpress-stubs/issues",
+                "source": "https://github.com/php-stubs/wordpress-stubs/tree/v6.2.0"
+            },
+            "install-path": "../php-stubs/wordpress-stubs"
         }
     ],
     "dev": true,
     "dev-package-names": [
-        "paulthewalton/acf-stubs"
+        "php-stubs/acf-pro-stubs",
+        "php-stubs/wordpress-stubs"
     ]
 }

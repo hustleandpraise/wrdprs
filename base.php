@@ -19,6 +19,7 @@ use Hustle\Wrapper;
                 - template/homepage
                 - etc
             */ ?>
+
             <div class="flex-1">
                 <?php include Wrapper\template_path(); ?>
             </div>
@@ -27,7 +28,7 @@ use Hustle\Wrapper;
         </main>
 
         <?php wp_footer(); ?>
-        <script src="<?= js_url("main.min.js"); ?>"></script>
+
     </body>
 
 </html>
