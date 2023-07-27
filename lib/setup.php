@@ -46,21 +46,28 @@ function setup() {
     */
 
     add_theme_support('html5', array('caption', 'comment-form', 'comment-list', 'gallery', 'search-form'));
+}
+
+add_action('after_setup_theme', __NAMESPACE__ . '\\setup');
 
 
-    /*
-    |--------------------------------------------------
-    | Get Manifest File
-    |--------------------------------------------------
-    */
-    
-    function getManifest() {
-        $assDir = get_template_directory_uri() . '/assets/dist/';
-        $jsonString = file_get_contents($assDir . '/manifest.json');
-        return json_decode($jsonString, true);
-    }
-    
+/*
+|--------------------------------------------------
+| Get Manifest File
+|--------------------------------------------------
+*/
 
+function getManifest() {
+    $assDir = get_template_directory_uri() . '/assets/dist/';
+    $jsonString = file_get_contents($assDir . '/manifest.json');
+    return json_decode($jsonString, true);
+}
+
+
+$manifest = getManifest();
+
+
+function assets_init() {
     $manifest = getManifest();
 
     /*
@@ -68,8 +75,6 @@ function setup() {
     | Enqueue Scripts
     |--------------------------------------------------
     */
-
-    
     
     wp_enqueue_script( 
         'main',
@@ -81,14 +86,21 @@ function setup() {
 
    wp_enqueue_style(
        'main',
-       join("/", [get_template_directory_uri(), $manifest['main.css']])
+       join("/", [get_template_directory_uri(), $manifest['main.css']]),
    );
 
 
+    wp_dequeue_style( 'wp-block-library' );
+    wp_dequeue_style( 'wp-block-library-theme' );
+    wp_dequeue_style( 'wc-blocks-style' ); // Remove WooCommerce block CSS
+
+    wp_deregister_style('classic-theme-styles');
+    wp_dequeue_style('classic-theme-styles');
 
 }
 
-add_action('after_setup_theme', __NAMESPACE__ . '\\setup');
+add_action('wp_enqueue_scripts', __NAMESPACE__ . '\\assets_init');
+    
 
 /*
 |--------------------------------------------------

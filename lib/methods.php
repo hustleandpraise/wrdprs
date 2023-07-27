@@ -164,3 +164,32 @@ function truncate($string,$length=100,$append="&hellip;") {
   
     return $string;
 }
+
+/*
+|--------------------------------------------------
+| Toggle Class
+|--------------------------------------------------
+*/
+
+function toggleClass($condition = false, $class, $elseClass = "") {
+    if($condition) {
+        return $class;
+    }
+    return $elseClass;
+}
+
+
+/*
+|--------------------------------------------------
+| Get Latest Posts
+|--------------------------------------------------
+*/
+
+function getLatestPosts($count = -1) {
+    $query = new WP_Query([
+        'post_type' => 'post',
+        'posts_per_page' => $count
+    ]);
+
+    return $query->get_posts();
+}

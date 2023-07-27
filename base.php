@@ -4,7 +4,7 @@ use Hustle\Wrapper;
 ?>
 <!doctype html>
 <html class="no-js" <?php language_attributes(); ?>>
-    <?= partial("head"); ?>
+    <?= partial("_head"); ?>
 
     <body <?php body_class(); ?>>
         <main class="min-h-screen flex flex-col">
