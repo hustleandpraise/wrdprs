@@ -2,6 +2,10 @@ const path = require("path");
 const CopyPlugin = require("copy-webpack-plugin");
 const { WebpackManifestPlugin } = require("webpack-manifest-plugin");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
+const CssMinimizerPlugin = require("css-minimizer-webpack-plugin");
+const lightningcss = require("lightningcss");
+const browserslist = require("browserslist");
+const TerserPlugin = require("terser-webpack-plugin");
 
 const config = {
     entry: {
@@ -58,6 +62,28 @@ const config = {
             filename: "[name].[chunkhash].css",
         }),
     ],
+    optimization: {
+        minimize: true,
+        minimizer: [
+            new TerserPlugin({
+                extractComments: false,
+                terserOptions: {
+                    sourceMap: false,
+                    compress: {
+                        drop_console: true,
+                    },
+                },
+            }),
+            new CssMinimizerPlugin({
+                minify: CssMinimizerPlugin.lightningCssMinify,
+                minimizerOptions: {
+                    targets: lightningcss.browserslistToTargets(
+                        browserslist(">= 0.25%")
+                    ),
+                },
+            }),
+        ],
+    },
 };
 
 module.exports = config;

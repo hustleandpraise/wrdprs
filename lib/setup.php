@@ -27,8 +27,10 @@ function setup() {
     */
     register_nav_menus(array(
         'main_navigation' => "Main Navigation",
-        'footer_navigation' => "Footer Navigation",
-        'mobile_navigation' => "Mobile Navigation"
+        'mobile_navigation' => "Mobile Navigation",
+        'footer_linklist_1' => "Footer Link list 1",
+        'footer_linklist_2' => "Footer Link list 2",
+        'footer_linklist_3' => "Footer Link list 3"
     ));
 
     /*
@@ -119,4 +121,4 @@ function widgets_init() {
     ));
 }
 
-add_action('widgets_init', __NAMESPACE__ . '\\widgets_init');
+// add_action('widgets_init', __NAMESPACE__ . '\\widgets_init');
